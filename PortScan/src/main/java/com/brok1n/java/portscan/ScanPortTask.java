@@ -1,4 +1,4 @@
-package com.brok1n.java.web.cmccserver;
+package com.brok1n.java.portscan;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -42,27 +42,29 @@ public class ScanPortTask implements Runnable {
         for ( int i = startPort; i <= endPort ; i ++ ) {
 
             int finalI = i;
+
             fixedThreadPool.execute(new Runnable() {
                 @Override
                 public void run() {
-
-
                     try {
                         SocketAddress socketAddress = new InetSocketAddress( ip, finalI);
                         Socket socket = new Socket();
                         socket.connect( socketAddress, timeout );
-                        System.out.println("");
-                        System.err.println("端口:" + finalI + " 开放 "  + simpleDateFormat.format( new Date( System.currentTimeMillis() ) ) );
+                        System.err.println("ip:" + ip + " 端口:" + finalI + " 开放 " );
                         socket.close();
                     } catch (IOException e) {
                         //e.printStackTrace();
                     }
                     if ( finalI >= endPort ) {
-                        System.out.println("\r\n\r\nend time:" + simpleDateFormat.format( new Date( System.currentTimeMillis() ) ) );
-
+                        System.out.println("end time:" + simpleDateFormat.format( new Date( System.currentTimeMillis() ) ) );
                     }
                 }
             });
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         fixedThreadPool.shutdown();
     }
