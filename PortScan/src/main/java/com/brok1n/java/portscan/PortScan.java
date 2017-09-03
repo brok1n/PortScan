@@ -60,7 +60,7 @@ public class PortScan {
             return ;
         }
 
-        //输入参数就打印帮助文档
+        //输入参数错误就打印帮助文档
         if ( args.length < 4 ) {
             printHelp();
             return ;
