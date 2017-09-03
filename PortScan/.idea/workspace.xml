@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="PortScan" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="aea2ab76-8198-45d3-8fae-f077a8e9131f" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -75,15 +80,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PortScan.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PortScan.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/brok1n/java/portscan/PortScan.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="152" column="49" lean-forward="true" selection-start-line="152" selection-start-column="49" selection-end-line="152" selection-end-column="49" />
+            <state relative-caret-position="278">
+              <caret line="52" column="20" lean-forward="true" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#scan#0;class#PortScan#0" expanded="false" />
+                <element signature="method#analysisOptimize#0;class#PortScan#0" expanded="false" />
                 <element signature="method#parseParameter#0;class#PortScan#0" expanded="false" />
                 <element signature="method#parsePort#0;class#PortScan#0" expanded="false" />
+                <element signature="method#parseIp#0;class#PortScan#0" expanded="false" />
                 <element signature="method#printHelp#0;class#PortScan#0" expanded="false" />
                 <element signature="method#printInfo#0;class#PortScan#0" expanded="false" />
               </folding>
@@ -107,7 +115,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/brok1n/java/portscan/ScanPortTask.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="407">
-              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -117,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/brok1n/java/portscan/PingTask.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="95" column="53" lean-forward="true" selection-start-line="95" selection-start-column="53" selection-end-line="95" selection-end-column="53" />
+              <caret line="95" column="53" lean-forward="false" selection-start-line="95" selection-start-column="53" selection-end-line="95" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,10 +146,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cmd.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Cmd.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/brok1n/java/portscan/Cmd.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-498">
+            <state relative-caret-position="-201">
               <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -618,9 +626,9 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -664,26 +672,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="PortScan" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.brok1n.java.portscan.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.brok1n.java.portscan.PortScan" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-i 221.196.5.5:221.196.6.5 -p 20:8080 -t 200 -th 600" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="brok1n_main" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="Cmd" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -695,6 +683,26 @@
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="brok1n_main" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="PortScan" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.brok1n.java.portscan.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.brok1n.java.portscan.PortScan" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="--help" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -1166,8 +1174,8 @@
     </configuration>
     <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.PingTest" />
-      <item index="1" class="java.lang.String" itemvalue="Application.PortScan" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Cmd" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Cmd" />
+      <item index="2" class="java.lang.String" itemvalue="Application.PortScan" />
     </list>
     <recent_temporary>
       <list size="3">
@@ -1197,16 +1205,15 @@
       <workItem from="1504188662795" duration="21000" />
       <workItem from="1504273911377" duration="31527000" />
       <workItem from="1504368254841" duration="5994000" />
-      <workItem from="1504399760481" duration="9856000" />
+      <workItem from="1504399760481" duration="13056000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52902000" />
+    <option name="totallyTimeSpent" value="56102000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1874" height="1096" extended-state="7" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1218,12 +1225,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3416407" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19106957" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15368639" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26074973" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26074973" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13340683" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1263,8 +1270,11 @@
           <caret line="147" column="74" lean-forward="false" selection-start-line="147" selection-start-column="74" selection-end-line="147" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#scan#0;class#PortScan#0" expanded="false" />
+            <element signature="method#analysisOptimize#0;class#PortScan#0" expanded="false" />
             <element signature="method#parseParameter#0;class#PortScan#0" expanded="false" />
             <element signature="method#parsePort#0;class#PortScan#0" expanded="false" />
+            <element signature="method#parseIp#0;class#PortScan#0" expanded="false" />
             <element signature="method#printHelp#0;class#PortScan#0" expanded="false" />
             <element signature="method#printInfo#0;class#PortScan#0" expanded="false" />
           </folding>
@@ -1308,8 +1318,11 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#scan#0;class#PortScan#0" expanded="false" />
+            <element signature="method#analysisOptimize#0;class#PortScan#0" expanded="false" />
             <element signature="method#parseParameter#0;class#PortScan#0" expanded="false" />
             <element signature="method#parsePort#0;class#PortScan#0" expanded="false" />
+            <element signature="method#parseIp#0;class#PortScan#0" expanded="false" />
             <element signature="method#printHelp#0;class#PortScan#0" expanded="false" />
             <element signature="method#printInfo#0;class#PortScan#0" expanded="false" />
           </folding>
@@ -1364,8 +1377,11 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#scan#0;class#PortScan#0" expanded="false" />
+            <element signature="method#analysisOptimize#0;class#PortScan#0" expanded="false" />
             <element signature="method#parseParameter#0;class#PortScan#0" expanded="false" />
             <element signature="method#parsePort#0;class#PortScan#0" expanded="false" />
+            <element signature="method#parseIp#0;class#PortScan#0" expanded="false" />
             <element signature="method#printHelp#0;class#PortScan#0" expanded="false" />
             <element signature="method#printInfo#0;class#PortScan#0" expanded="false" />
           </folding>
@@ -1378,8 +1394,11 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#scan#0;class#PortScan#0" expanded="false" />
+            <element signature="method#analysisOptimize#0;class#PortScan#0" expanded="false" />
             <element signature="method#parseParameter#0;class#PortScan#0" expanded="false" />
             <element signature="method#parsePort#0;class#PortScan#0" expanded="false" />
+            <element signature="method#parseIp#0;class#PortScan#0" expanded="false" />
             <element signature="method#printHelp#0;class#PortScan#0" expanded="false" />
             <element signature="method#printInfo#0;class#PortScan#0" expanded="false" />
           </folding>
@@ -1429,7 +1448,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brok1n/java/portscan/ScanPortTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="407">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1445,24 +1464,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/brok1n/java/portscan/PortScan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="152" column="49" lean-forward="true" selection-start-line="152" selection-start-column="49" selection-end-line="152" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#parseParameter#0;class#PortScan#0" expanded="false" />
-            <element signature="method#parsePort#0;class#PortScan#0" expanded="false" />
-            <element signature="method#printHelp#0;class#PortScan#0" expanded="false" />
-            <element signature="method#printInfo#0;class#PortScan#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brok1n/java/portscan/PingTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="95" column="53" lean-forward="true" selection-start-line="95" selection-start-column="53" selection-end-line="95" selection-end-column="53" />
+          <caret line="95" column="53" lean-forward="false" selection-start-line="95" selection-start-column="53" selection-end-line="95" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1492,10 +1497,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/brok1n/java/portscan/Cmd.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-498">
+        <state relative-caret-position="-201">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="45" lean-forward="true" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/brok1n/java/portscan/PortScan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="52" column="20" lean-forward="true" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#scan#0;class#PortScan#0" expanded="false" />
+            <element signature="method#analysisOptimize#0;class#PortScan#0" expanded="false" />
+            <element signature="method#parseParameter#0;class#PortScan#0" expanded="false" />
+            <element signature="method#parsePort#0;class#PortScan#0" expanded="false" />
+            <element signature="method#parseIp#0;class#PortScan#0" expanded="false" />
+            <element signature="method#printHelp#0;class#PortScan#0" expanded="false" />
+            <element signature="method#printInfo#0;class#PortScan#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1506,10 +1536,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>PortScan</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

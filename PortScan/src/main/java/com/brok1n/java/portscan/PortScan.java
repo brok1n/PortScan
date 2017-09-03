@@ -60,6 +60,12 @@ public class PortScan {
             return ;
         }
 
+        //输入参数就打印帮助文档
+        if ( args.length < 4 ) {
+            printHelp();
+            return ;
+        }
+
         DataCenter dc = DataCenter.getInstance();
         //解析参数
         parseParameter( args );
