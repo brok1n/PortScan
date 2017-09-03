@@ -1,8 +1,10 @@
-#Port Scan  端口扫描工具
-##Author:brok1n
-##Email:brok1n@outlook.com
-##Version: 1.0.0
-##Date:2017/09/03
+-Port Scan  端口扫描工具
+-Author:brok1n
+-Email:brok1n@outlook.com
+-Version: 1.0.0
+-Date:2017/09/03
+
+
 
 声明: 本工具只用于本人于工作上做检测公司项目服务器在想状态、服务器服务平台端口是否正常、编程技术学习使用。禁止除本人以外的任何个人或公司用本工具做任何其他非法用途
 
