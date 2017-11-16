@@ -24,35 +24,101 @@ public class ScanMorePortTask implements Runnable {
     @Override
     public void run() {
         DataCenter dc = DataCenter.getInstance();
-        System.out.println("start time:" + PortScan.simpleDateFormat.format(new Date( System.currentTimeMillis() ) ) );
+        System.out.println("开始端口扫描:" + PortScan.simpleDateFormat.format(new Date( System.currentTimeMillis() ) ) );
         Machine machines[] = dc.getOnLineMachineList().toArray( new Machine[]{});
-        while ( !dc.getPortList().isEmpty() ) {
-            final int port = dc.getPortList().poll();
-            for ( int i = 0; i < machines.length; i ++ ) {
-                final Machine machine = machines[i];
-                fixedThreadPool.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            SocketAddress socketAddress = new InetSocketAddress( machine.getIp(), port);
-                            Socket socket = new Socket();
-                            socket.connect( socketAddress, machine.getTimeout() );
-                            machine.getOpenPortList().add( port );
-                            System.out.println(""+machine.getIp() + " " + port );
-                            socket.close();
-                        } catch (IOException e) {
-                            //e.printStackTrace();
+        for ( int i = 0; i < machines.length; i ++ ) {
+            final Machine machine = machines[i];
+            fixedThreadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        while ( !dc.getPortList().isEmpty() ) {
+                            final int port = dc.getPortList().poll();
+
+                            System.out.print("\r");
+                            System.out.print(String.valueOf(port));
+                            System.out.print("        ");
+                            System.out.print(machine.getIp());
+                            try {
+                                SocketAddress socketAddress = new InetSocketAddress( machine.getIp(), port);
+                                Socket socket = new Socket();
+                                socket.connect( socketAddress, machine.getTimeout() );
+                                machine.getOpenPortList().add( port );
+
+                                System.out.print("\r");
+                                System.out.print(machine.getIp());
+                                System.out.print("        ");
+                                System.out.println(String.valueOf(port));
+                                socket.close();
+                            } catch (IOException e) {
+                                //e.printStackTrace();
+                            }
                         }
-                    }
-                });
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                        dc.setScanHostCount( dc.getScanHostCount() + 1 );
+                    }catch (Exception e){e.printStackTrace();}
                 }
+            });
+
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+
+        while ( dc.getScanHostCount() < dc.getOnLineMachineList().size() ){
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         fixedThreadPool.shutdown();
     }
+
+//    @Override
+//    public void run() {
+//        DataCenter dc = DataCenter.getInstance();
+//        System.out.println("开始端口扫描:" + PortScan.simpleDateFormat.format(new Date( System.currentTimeMillis() ) ) );
+//        Machine machines[] = dc.getOnLineMachineList().toArray( new Machine[]{});
+//        while ( !dc.getPortList().isEmpty() ) {
+//            final int port = dc.getPortList().poll();
+//            //System.out.print("\r" + port + "                    " );
+//            for ( int i = 0; i < machines.length; i ++ ) {
+//                final Machine machine = machines[i];
+//                fixedThreadPool.execute(new Runnable() {
+//                    @Override
+//                    public synchronized void run() {
+//
+//                        System.out.print("\r");
+//                        System.out.print(String.valueOf(port));
+//                        System.out.print("        ");
+//                        System.out.print(machine.getIp());
+//                        try {
+//                            SocketAddress socketAddress = new InetSocketAddress( machine.getIp(), port);
+//                            Socket socket = new Socket();
+//                            socket.connect( socketAddress, machine.getTimeout() );
+//                            machine.getOpenPortList().add( port );
+//
+//                            System.out.print("\r");
+//                            System.out.print(machine.getIp());
+//                            System.out.print("        ");
+//                            System.out.println(String.valueOf(port));
+//                            socket.close();
+//                        } catch (IOException e) {
+//                            //e.printStackTrace();
+//                        }
+//                    }
+//                });
+//                try {
+//                    Thread.sleep(10);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        fixedThreadPool.shutdown();
+//    }
 
 }

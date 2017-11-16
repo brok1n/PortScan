@@ -1,11 +1,8 @@
 package com.brok1n.java.portscan;
 
-import jdk.nashorn.internal.ir.CatchNode;
-
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -39,7 +36,7 @@ public class PortScan {
      *  -t
      *      timeout default 300
      *  -th
-     *      processing thread number default 300;
+     *      processing thread number default 100;
      *
      *
      * */
@@ -49,13 +46,6 @@ public class PortScan {
 
         //查看帮助文档
         if ( args.length == 1 && ( args[0].indexOf("?") >= 0 || args[0].indexOf("help") >= 0 || args[0].indexOf("h") >= 0 || args[0].indexOf("man") >= 0 )) {
-            printHelp();
-            return ;
-        }
-
-        //参数错误 提示 并打印帮助文档
-        if ( args.length % 2 != 0 ) {
-            System.err.println("parameter error ");
             printHelp();
             return ;
         }
@@ -81,7 +71,7 @@ public class PortScan {
         //System.out.println("机器:" + dc.getMachineList().toString() );
 
         //ip超过10个就需要优化扫描效率
-        if ( dc.getIpList().size() > 5 ) {
+        if ( dc.getIpList().size() > 5 && !dc.isIgnorePing() ) {
             //优化扫描
             analysisOptimize();
         } else {
@@ -103,7 +93,7 @@ public class PortScan {
 
     }
 
-    //直接扫描 使用优化
+    //直接扫描 不使用优化
     private static void scan() {
         DataCenter dc = DataCenter.getInstance();
         dc.getOnLineMachineList().addAll( dc.getMachineList() );
@@ -114,6 +104,7 @@ public class PortScan {
 
         while ( !fixedThreadPool.isShutdown() ) {
             try {
+
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -131,27 +122,28 @@ public class PortScan {
         System.out.println("正在扫描主机在线状态...");
         //处理无效IP
         DataCenter dc = DataCenter.getInstance();
-        Thread pingThread = new Thread( new PingTask( ) );
+
+        fixedThreadPool = Executors.newFixedThreadPool(dc.getThreadNum());
+
+        Thread pingThread = new Thread( new PingTask( fixedThreadPool ) );
         pingThread.start();
 
         //等待ping处理完成
         while ( !dc.isPingOk() ) {
             try {
-                Thread.sleep(1000 );
+                Thread.sleep(500 );
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
 
-        System.out.println("主机在线状态扫描完成:" + simpleDateFormat.format(new Date( System.currentTimeMillis() )));
+        System.out.println("\r主机在线状态扫描完成:" + simpleDateFormat.format(new Date( System.currentTimeMillis() )));
         System.out.println("总主机数量:" + dc.getMachineList().size() );
         System.out.println("在线主机数量:" + dc.getOnLineMachineList().size() );
         System.out.println("离线主机数量:" + (dc.getMachineList().size() - dc.getOnLineMachineList().size() ) );
-        System.out.println("优化处理完成！");
-        System.out.println("扫描主机数量:" + dc.getOnLineMachineList().size() );
-        System.out.println("主机连接超时时间优化成功");
+        System.out.println("扫描优化成功!");
 
-        fixedThreadPool = Executors.newFixedThreadPool(dc.getThreadNum());
+
         ScanMorePortTask scanMorePortTask = new ScanMorePortTask( fixedThreadPool );
         Thread scaThread = new Thread( scanMorePortTask );
         scaThread.start();
@@ -185,6 +177,8 @@ public class PortScan {
                 } else if ( key.equals("-th") ) {
                     val = args[p+1].trim();
                     DataCenter.getInstance().setThreadNum(Integer.parseInt(val));
+                } else if ( key.equals("-ig")) {
+                    DataCenter.getInstance().setIgnorePing( true );
                 }
 
             }
@@ -389,6 +383,18 @@ public class PortScan {
                 "    timeout default 300\n" +
                 "-th\n" +
                 "    processing thread number default 300");
+
+        System.out.flush();
+        for ( int i = 0; i < 30; i ++ ){
+            System.out.println(">");
+        }
+        System.out.print("> ");
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -397,7 +403,7 @@ public class PortScan {
     public static void printInfo(){
         System.out.println("Name:Port Scan");
         System.out.println("Author:brok1n");
-        System.out.println("Version:1.0.0");
+        System.out.println("Version:1.1.0");
         System.out.println("Email:brok1n@outlook.com");
         System.out.println("time:" + simpleDateFormat.format(new Date( System.currentTimeMillis() )));
     }

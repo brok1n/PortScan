@@ -14,15 +14,21 @@ public class DataCenter {
     //TCP连接超时时间
     private int timeout = 300;
     //使用线程数
-    private int threadNum = 300;
+    private int threadNum = 100;
 
     //ping是否处理完成
     private boolean pingOk = false;
+
+    //扫描主机数量
+    private long scanHostCount = 0;
 
     //要扫描的IP  ip参数
     private String ipParameter;
     //要扫描的端口列表 端口参数
     private String portParameter;
+
+    //忽略ping优化
+    private boolean isIgnorePing = false;
 
     //端口列表
     private ConcurrentLinkedQueue<Integer> portList = new ConcurrentLinkedQueue<>();
@@ -32,6 +38,7 @@ public class DataCenter {
     private ConcurrentLinkedQueue<Machine> machineList = new ConcurrentLinkedQueue<>();
     //在线
     private ConcurrentLinkedQueue<Machine> onLineMachineList = new ConcurrentLinkedQueue<>();
+    private ConcurrentLinkedQueue<Machine> offLineMachineList = new ConcurrentLinkedQueue<>();
 
     public boolean isPingOk() {
         return pingOk;
@@ -87,6 +94,26 @@ public class DataCenter {
 
     public void setPortParameter(String portParameter) {
         this.portParameter = portParameter;
+    }
+
+    public ConcurrentLinkedQueue<Machine> getOffLineMachineList() {
+        return offLineMachineList;
+    }
+
+    public void setIgnorePing(boolean ignorePing) {
+        isIgnorePing = ignorePing;
+    }
+
+    public boolean isIgnorePing() {
+        return isIgnorePing;
+    }
+
+    public long getScanHostCount() {
+        return scanHostCount;
+    }
+
+    public void setScanHostCount(long scanHostCount) {
+        this.scanHostCount = scanHostCount;
     }
 
     private DataCenter(){}

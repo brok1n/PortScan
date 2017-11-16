@@ -3,6 +3,7 @@ package com.brok1n.java.portscan;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
@@ -14,16 +15,12 @@ import java.util.regex.Pattern;
 public class PingTask implements Runnable {
 
     //获取延迟时间正则
-    String delayTimeReg = "[=|<]\\d{1,6}ms";
     private ExecutorService fixedThreadPool;
-    Pattern pattern = Pattern.compile(delayTimeReg);
     public static long checkCount = 0;
 
-    //public PingTask( ExecutorService fixedThreadPool ){
-    public PingTask(){
-        //this.fixedThreadPool = fixedThreadPool;
+    public PingTask( ExecutorService fixedThreadPool){
         checkCount = 0;
-        this.fixedThreadPool = Executors.newFixedThreadPool(50);
+        this.fixedThreadPool = fixedThreadPool;
     }
 
     @Override
@@ -39,7 +36,6 @@ public class PingTask implements Runnable {
                 e.printStackTrace();
             }
         }
-        fixedThreadPool.shutdown();
     }
 
     class PingRunnable implements Runnable{
@@ -50,63 +46,31 @@ public class PingTask implements Runnable {
         }
 
         @Override
-        public void run() {
+        public synchronized void run() {
             DataCenter dc = DataCenter.getInstance();
             //获取到机器的平均延时  0为机器不在线
             String ip = machine.getIp();
-            int delayTime = ping( ip );
-            //设置机器在线状态 设置机器连接超时时间
-            if ( delayTime > 0 ) {
-                //在线
-                //设置连接超时时间比平均延时大100
-                machine.setTimeout( delayTime + 100 );
-                machine.setOnline(true);
-                dc.getOnLineMachineList().add(machine);
-            }
-            checkCount ++;
-            if ( checkCount >= dc.getMachineList().size() ) {
-                try {
-                    Thread.sleep(2000 );
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            System.out.print("\r");
+            System.out.print(ip);
+            try {
+                boolean status = InetAddress.getByName(ip).isReachable(2000);
+                machine.setOnline( status );
+                if ( status ){
+                    dc.getOnLineMachineList().add( machine );
+                    System.out.print("        ");
+                    System.out.println("OnLine");
+                } else {
+                    dc.getOffLineMachineList().add(machine);
                 }
-                DataCenter.getInstance().setPingOk(true);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }
-    }
+            checkCount ++ ;
+            if ( checkCount >= dc.getMachineList().size() ) {
+                dc.setPingOk( true );
+            }
 
-    private int ping(String ip ){
-        int avg = 0;
-        Runtime ping = Runtime.getRuntime();
-        try {
-            Process process = ping.exec("ping -n 2 -w 600 " + ip );
-            BufferedReader br = new BufferedReader( new InputStreamReader( process.getInputStream() ) );
-            while ( br.readLine() == null ) {Thread.sleep(10);}
-            String line = null;
-            int sum = 0;
-            int count = 0;
-            while ( ( line = br.readLine() ) != null  ) {
-                if ( line.indexOf(" TTL") <= 0 )
-                    continue;
-                Matcher matcher = pattern.matcher(line);
-                if ( !matcher.find() )
-                    continue;
-                String matchStr = matcher.group(0);
-                matchStr = matchStr.replace("<", "");
-                matchStr = matchStr.replace("=", "");
-                matchStr = matchStr.replace("ms", "");
-                sum += Integer.parseInt( matchStr );
-                count ++;
-                avg = sum / count;
-                Thread.sleep(10 );
-            }
-            br.close();
-        } catch (IOException e) {
-            //e.printStackTrace();
-        } catch (InterruptedException e) {
-            //e.printStackTrace();
         }
-        return avg;
     }
 
 }
